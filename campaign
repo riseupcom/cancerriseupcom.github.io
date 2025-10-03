@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kampanye | CancerRiseUp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4D9E',
+                        accent: '#FFD6E8',
+                        neutral: '#333333',
+                        light: '#F8F8FA'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .progress-bar {
+            transition: width 1s ease-in-out;
+        }
+        .campaign-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 77, 158, 0.2);
+        }
+        .filter-checkbox:checked + .filter-label {
+            background-color: #FF4D9E;
+            color: white;
+        }
+        .filter-checkbox:checked + .filter-label i {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-body text-neutral bg-white">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-feather="heart" class="text-primary w-8 h-8"></i>
+                <span class="font-heading text-2xl font-bold text-primary">CancerRiseUp</span>
+            </div>
+            <div class="hidden lg:flex space-x-8 items-center">
+                <a href="index.html" class="text-neutral hover:text-primary transition">Beranda</a>
+                <a href="campaigns.html" class="text-primary font-medium">Kampanye</a>
+                <a href="start-campaign.html" class="text-neutral hover:text-primary transition">Mulai Kampanye</a>
+                <a href="about.html" class="text-neutral hover:text-primary transition">Tentang Kami</a>
+                <a href="community.html" class="text-neutral hover:text-primary transition">Komunitas</a>
+                <div class="relative group">
+                    <button class="flex items-center text-neutral hover:text-primary transition">
+                        Lainnya <i data-feather="chevron-down" class="ml-1 w-4 h-4"></i>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-1 hidden group-hover:block">
+                        <a href="blog.html" class="block px-4 py-2 hover:bg-accent">Blog</a>
+                        <a href="faq.html" class="block px-4 py-2 hover:bg-accent">FAQ</a>
+                        <a href="contact.html" class="block px-4 py-2 hover:bg-accent">Kontak</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="login.html" class="hidden md:block text-primary hover:text-primary-dark transition">Masuk</a>
+                <a href="register.html" class="hidden md:block bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">Daftar</a>
+                <button class="bg-primary text-white p-2 rounded-full lg:hidden" id="mobile-menu-button">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobile-menu">
+        <div class="bg-white h-full w-4/5 max-w-sm ml-auto p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-2">
+                    <i data-feather="heart" class="text-primary w-6 h-6"></i>
+                    <span class="font-heading text-xl font-bold text-primary">CancerRiseUp</span>
+                </div>
+                <button id="close-mobile-menu">
+                    <i data-feather="x" class="text-neutral"></i>
+                </button>
+            </div>
+            <div class="space-y-6">
+                <a href="index.html" class="block py-2 text-neutral hover:text-primary">Beranda</a>
+                <a href="campaigns.html" class="block py-2 text-primary">Kampanye</a>
+                <a href="start-campaign.html" class="block py-2 text-neutral hover:text-primary">Mulai Kampanye</a>
+                <a href="about.html" class="block py-2 text-neutral hover:text-primary">Tentang Kami</a>
+                <a href="community.html" class="block py-2 text-neutral hover:text-primary">Komunitas</a>
+                <a href="blog.html" class="block py-2 text-neutral hover:text-primary">Blog</a>
+                <a href="faq.html" class="block py-2 text-neutral hover:text-primary">FAQ</a>
+                <a href="contact.html" class="block py-2 text-neutral hover:text-primary">Kontak</a>
+                <div class="pt-4 border-t border-gray-200">
+                    <a href="login.html" class="block py-2 text-primary">Masuk</a>
+                    <a href="register.html" class="block mt-4 bg-primary text-white px-4 py-2 rounded-full text-center font-medium">Daftar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Campaigns Header -->
+    <section class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="font-heading text-3xl md:text-4xl font-bold mb-4">Temukan Kampanye yang Membutuhkan Bantuanmu</h1>
+            <p class="text-lg md:text-xl max-w-3xl opacity-90">Berikan dukunganmu kepada pasien kanker di seluruh Indonesia yang membutuhkan bantuan finansial untuk pengobatan.</p>
+        </div>
+    </section>
+
+    <!-- Search & Filters -->
+    <section class="py-8 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="relative flex-grow">
+                    <input type="text" placeholder="Cari kampanye..." class="w-full px-6 py-3 rounded-full border-0 focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                    <i data-feather="search" class="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <button class="bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition flex items-center justify-center">
+                    <i data-feather="filter" class="mr-2 w-5 h-5"></i>
+                    Filter
+                </button>
+            </div>
+
+            <!-- Filter Options (Collapsible) -->
+            <div class="mt-6 bg-white rounded-xl shadow-md p-6 hidden" id="filter-options">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <h3 class="font-bold mb-3">Jenis Kanker</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Payudara</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Darah (Leukemia)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Otak</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Paru</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Serviks</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold mb-3">Lokasi</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Jawa</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Sumatera</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Kalimantan</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Sulawesi</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span>Indonesia Timur</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold mb-3">Status</h3>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="filter-checkbox absolute opacity-0">
+                                <span class="filter-label flex items-center px-3 py-1 rounded-full border border-primary text-primary text-sm cursor-pointer">
+                                    <i data-feather="check" class="w-3 h-3 mr-1 opacity-0"></i>
+                                    Terverifikasi
+                                </span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="filter-checkbox absolute opacity-0">
+                                <span class="filter-label flex items-center px-3 py-1 rounded-full border border-primary text-primary text-sm cursor-pointer">
+                                    <i data-feather="check" class="w-3 h-3 mr-1 opacity-0"></i>
+                                    Urgent
+                                </span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="filter-checkbox absolute opacity-0">
+                                <span class="filter-label flex items-center px-3 py-1 rounded-full border border-primary text-primary text-sm cursor-pointer">
+                                    <i data-feather="check" class="w-3 h-3 mr-1 opacity-0"></i>
+                                    Hampir Terpenuhi
+                                </span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="filter-checkbox absolute opacity-0">
+                                <span class="filter-label flex items-center px-3 py-1 rounded-full border border-primary text-primary text-sm cursor-pointer">
+                                    <i data-feather="check" class="w-3 h-3 mr-1 opacity-0"></i>
+                                    Baru Dimulai
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end mt-6 gap-3">
+                    <button class="px-4 py-2 text-primary font-medium hover:bg-accent rounded-full">Reset Filter</button>
+                    <button class="px-6 py-2 bg-primary text-white rounded-full font-medium hover:bg-opacity-90">Terapkan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaigns Grid -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="font-heading text-2xl font-bold">Semua Kampanye</h2>
+                <div class="flex items-center">
+                    <span class="mr-2">Urutkan:</span>
+                    <select class="bg-white border border-gray-300 rounded-full px-4 py-2 focus:ring-primary focus:border-primary">
+                        <option>Terbaru</option>
+                        <option>Hampir Terpenuhi</option>
+                        <option>Paling Mendesak</option>
+                        <option>Paling Banyak Didukung</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Campaign 1 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/4" alt="Kampanye kanker payudara" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-medium">Urgent</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Bantu Ibu Siti Lawan Kanker Payudara</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Ibu Siti (52) membutuhkan biaya operasi dan kemoterapi setelah didiagnosa kanker payudara stadium 2. Suaminya seorang sopir angkot dengan penghasilan pas-pasan...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 8,2 jt dari Rp 35 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 23%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>64 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>9 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 2 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/5" alt="Kampanye kanker darah" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Transplantasi Sumsum untuk Adik Rara</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Rara (7 tahun) menderita leukemia sejak usia 4 tahun. Setelah menjalani berbagai pengobatan, dokter menyarankan transplantasi sumsum tulang sebagai solusi terbaik...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 423 jt dari Rp 500 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 84%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>1.028 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>14 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 3 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/6" alt="Kampanye kanker otak" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Operasi Tumor Otak untuk Pak Joko</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Pak Joko (45), kepala keluarga dengan 3 anak, didiagnosa tumor otak yang perlu segera dioperasi. Tanpa operasi, kesehatannya akan semakin memburuk...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 27,5 jt dari Rp 65 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 42%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>187 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>21 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 4 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/7" alt="Kampanye kanker serviks" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-medium">Urgent</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Pengobatan Kanker Serviks Ibu Maria</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Ibu Maria (48) membutuhkan biaya radioterapi setelah operasi kanker serviks. Kondisi keuangan keluarga sangat terbatas setelah suaminya meninggal tahun lalu...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 5,1 jt dari Rp 28 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 18%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>42 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>5 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 5 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/8" alt="Kampanye kanker paru" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Bantu Pak Budi Melawan Kanker Paru</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Pak Budi (56), mantan buruh pabrik, didiagnosa kanker paru stadium 3. Dia membutuhkan biaya untuk kemoterapi dan obat-obatan rutin untuk mengontrol penyakitnya...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 38,9 jt dari Rp 45 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 86%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>312 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>30 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 6 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/9" alt="Kampanye kanker tulang" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Prostetik untuk Andi Penderita Kanker Tulang</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Andi (17) harus menjalani amputasi kaki karena kanker tulang. Dia membutuhkan kaki prostetik agar bisa beraktivitas normal kembali dan melanjutkan sekolah...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 12,7 jt dari Rp 25 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 51%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>95 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>22 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center">
+                <nav class="flex items-center space-x-1">
+                    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white">
+                        1
+                    </button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-accent">
+                        2
+                    </button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-accent">
+                        3
+                    </button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-accent">
+                        <i data-feather="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-accent">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="font-heading text-3xl font-bold mb-6">Tidak Menemukan Kampanye yang Cocok?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Anda bisa memulai kampanye sendiri untuk membantu orang terdekat yang membutuhkan.</p>
+            <a href="start-campaign.html" class="inline-block bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition">Mulai Kampanye</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="heart" class="text-primary w-8 h-8"></i>
+                        <span class="font-heading text-2xl font-bold">CancerRiseUp</span>
+                    </div>
+                    <p class="mb-4">Platform crowdfunding untuk membantu pasien kanker di Indonesia mendapatkan akses pengobatan yang mereka butuhkan.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-primary transition"><i data-feather="facebook"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="instagram"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="twitter"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Tautan Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="hover:text-primary transition">Tentang Kami</a></li>
+                        <li><a href="campaigns.html" class="hover:text-primary transition">Kampanye</a></li>
+                        <li><a href="start-campaign.html" class="hover:text-primary transition">Mulai Kampanye</a></li>
+                        <li><a href="blog.html" class="hover:text-primary transition">Blog</a></li>
+                        <li><a href="faq.html" class="hover:text-primary transition">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Dukungan</h3>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-primary transition">Hubungi Kami</a></li>
+                        <li><a href="community.html" class="hover:text-primary transition">Komunitas</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-primary transition">Kebijakan Privasi</a></li>
+                        <li><a href="terms.html" class="hover:text-primary transition">Syarat & Ketentuan</a></li>
+                        <li><a href="refund-policy.html" class="hover:text-primary transition">Kebijakan Pengembalian</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Newsletter</h3>
+                    <p class="mb-4">Daftar untuk mendapatkan update kampanye terbaru dan cerita inspiratif.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Alamat Email" class="px-4 py-2 rounded-l-lg w-full text-gray-800">
+                        <button type="submit" class="bg-primary px-4 py-2 rounded-r-lg hover:bg-opacity-90 transition">
+                            <i data-feather="send" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2023 CancerRiseUp. All rights reserved.</p>
+                <p class="mt-2 text-sm">CancerRiseUp mengikuti peraturan OJK/BI mengenai crowdfunding sosial.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Toggle filter options
+        const filterButton = document.querySelector('button:has(i[data-feather="filter"])');
+        const filterOptions = document.getElementById('filter-options');
+        
+        filterButton.addEventListener('click', () => {
+            filterOptions.classList.toggle('hidden');
+        });
+
+        // Animate progress bars when in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.progress-bar').forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.campaign-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Initialize feather icons
+        feather.replace();
+    </script>
+</body>
+</html>
