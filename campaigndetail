@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Kampanye | CancerRiseUp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4D9E',
+                        accent: '#FFD6E8',
+                        neutral: '#333333',
+                        light: '#F8F8FA'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .progress-bar {
+            transition: width 1s ease-in-out;
+        }
+        .donation-option:hover {
+            transform: scale(1.05);
+        }
+        .donation-option.selected {
+            background-color: #FF4D9E;
+            color: white;
+            border-color: #FF4D9E;
+        }
+    </style>
+</head>
+<body class="font-body text-neutral bg-white">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-feather="heart" class="text-primary w-8 h-8"></i>
+                <span class="font-heading text-2xl font-bold text-primary">CancerRiseUp</span>
+            </div>
+            <div class="hidden lg:flex space-x-8 items-center">
+                <a href="index.html" class="text-neutral hover:text-primary transition">Beranda</a>
+                <a href="campaigns.html" class="text-primary font-medium">Kampanye</a>
+                <a href="start-campaign.html" class="text-neutral hover:text-primary transition">Mulai Kampanye</a>
+                <a href="about.html" class="text-neutral hover:text-primary transition">Tentang Kami</a>
+                <a href="community.html" class="text-neutral hover:text-primary transition">Komunitas</a>
+                <div class="relative group">
+                    <button class="flex items-center text-neutral hover:text-primary transition">
+                        Lainnya <i data-feather="chevron-down" class="ml-1 w-4 h-4"></i>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-1 hidden group-hover:block">
+                        <a href="blog.html" class="block px-4 py-2 hover:bg-accent">Blog</a>
+                        <a href="faq.html" class="block px-4 py-2 hover:bg-accent">FAQ</a>
+                        <a href="contact.html" class="block px-4 py-2 hover:bg-accent">Kontak</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="login.html" class="hidden md:block text-primary hover:text-primary-dark transition">Masuk</a>
+                <a href="register.html" class="hidden md:block bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">Daftar</a>
+                <button class="bg-primary text-white p-2 rounded-full lg:hidden" id="mobile-menu-button">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobile-menu">
+        <div class="bg-white h-full w-4/5 max-w-sm ml-auto p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-2">
+                    <i data-feather="heart" class="text-primary w-6 h-6"></i>
+                    <span class="font-heading text-xl font-bold text-primary">CancerRiseUp</span>
+                </div>
+                <button id="close-mobile-menu">
+                    <i data-feather="x" class="text-neutral"></i>
+                </button>
+            </div>
+            <div class="space-y-6">
+                <a href="index.html" class="block py-2 text-neutral hover:text-primary">Beranda</a>
+                <a href="campaigns.html" class="block py-2 text-primary">Kampanye</a>
+                <a href="start-campaign.html" class="block py-2 text-neutral hover:text-primary">Mulai Kampanye</a>
+                <a href="about.html" class="block py-2 text-neutral hover:text-primary">Tentang Kami</a>
+                <a href="community.html" class="block py-2 text-neutral hover:text-primary">Komunitas</a>
+                <a href="blog.html" class="block py-2 text-neutral hover:text-primary">Blog</a>
+                <a href="faq.html" class="block py-2 text-neutral hover:text-primary">FAQ</a>
+                <a href="contact.html" class="block py-2 text-neutral hover:text-primary">Kontak</a>
+                <div class="pt-4 border-t border-gray-200">
+                    <a href="login.html" class="block py-2 text-primary">Masuk</a>
+                    <a href="register.html" class="block mt-4 bg-primary text-white px-4 py-2 rounded-full text-center font-medium">Daftar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Campaign Hero -->
+    <section>
+        <div class="relative">
+            <img src="http://static.photos/medical/1200x630/1" alt="Kampanye kanker payudara" class="w-full h-64 md:h-96 object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center">
+                <div class="container mx-auto px-4">
+                    <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-3xl">Bantu Rina Lawan Kanker Payudara Stadium 3</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaign Content -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Left Column - Story -->
+                <div class="lg:w-2/3">
+                    <!-- Organizer Info -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                        <div class="flex items-center mb-4">
+                            <img src="http://static.photos/people/200x200/10" alt="Penggalang dana" class="w-16 h-16 rounded-full object-cover mr-4">
+                            <div>
+                                <h3 class="font-bold text-xl">Dian Sastro (Saudara)</h3>
+                                <div class="flex items-center">
+                                    <span class="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium mr-2">Terverifikasi</span>
+                                    <span class="text-gray-500 text-sm"><i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i> Jakarta Selatan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">Saya menggalang dana ini untuk saudara saya, Rina, yang didiagnosa kanker payudara stadium 3. Dokter menyarankan serangkaian pengobatan termasuk operasi, kemoterapi, dan radioterapi.</p>
+                    </div>
+                    
+                    <!-- Story -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                        <h2 class="font-heading text-2xl font-bold mb-6">Kisah Perjuangan Rina</h2>
+                        <div class="prose max-w-none">
+                            <p>Rina (32 tahun) adalah seorang ibu muda dengan satu anak berusia 5 tahun. Dia bekerja sebagai guru TK sebelum didiagnosa kanker payudara stadium 3 awal tahun ini. Suaminya, seorang sopir taksi online, kesulitan menanggung biaya pengobatan yang sangat besar.</p>
+                            
+                            <p class="mt-4">Setelah melalui berbagai pemeriksaan di RS Dharmais, dokter menyarankan Rina untuk menjalani:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Operasi lumpektomi untuk mengangkat tumor</li>
+                                <li>6 siklus kemoterapi (AC-T regimen)</li>
+                                <li>Radioterapi selama 5 minggu</li>
+                                <li>Terapi hormon setelah pengobatan utama selesai</li>
+                            </ul>
+                            
+                            <p class="mt-4">Total biaya pengobatan diperkirakan mencapai Rp 120 juta. Keluarga kami telah mengumpulkan dana sebesar Rp 30 juta dari tabungan dan pinjaman, namun masih sangat kurang. Tanpa pengobatan yang memadai, kondisi Rina bisa semakin memburuk.</p>
+                            
+                            <p class="mt-4">Rina adalah orang yang sangat kuat dan penuh semangat hidup. Dia ingin sembuh untuk bisa mengasuh anaknya yang masih kecil. Setiap donasi dari Anda akan sangat berarti untuk kesembuhannya.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Medical Documents -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                        <h2 class="font-heading text-2xl font-bold mb-6">Dokumen Medis</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <a href="#" class="border rounded-lg overflow-hidden hover:shadow-md transition">
+                                <img src="http://static.photos/medical/320x240/11" alt="Hasil lab" class="w-full h-32 object-cover">
+                                <div class="p-2">
+                                    <p class="text-sm font-medium text-center">Hasil Pemeriksaan Patologi</p>
+                                </div>
+                            </a>
+                            <a href="#" class="border rounded-lg overflow-hidden hover:shadow-md transition">
+                                <img src="http://static.photos/medical/320x240/12" alt="Resep dokter" class="w-full h-32 object-cover">
+                                <div class="p-2">
+                                    <p class="text-sm font-medium text-center">Surat Rujukan Dokter</p>
+                                </div>
+                            </a>
+                            <a href="#" class="border rounded-lg overflow-hidden hover:shadow-md transition">
+                                <img src="http://static.photos/medical/320x240/13" alt="Rencana pengobatan" class="w-full h-32 object-cover">
+                                <div class="p-2">
+                                    <p class="text-sm font-medium text-center">Rencana Pengobatan</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Treatment Plan -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                        <h2 class="font-heading text-2xl font-bold mb-6">Rencana Pengobatan & Anggaran</h2>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Pengobatan</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Perkiraan Biaya</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Waktu</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Operasi Lumpektomi</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp 25.000.000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Juni 2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Kemoterapi (6 siklus)</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp 60.000.000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Juli - Des 2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Radioterapi (25 sesi)</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp 30.000.000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jan - Feb 2024</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Obat-obatan pendukung</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp 5.000.000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Maret 2024</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">Total</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">Rp 120.000.000</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Updates -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                        <h2 class="font-heading text-2xl font-bold mb-6">Update Terkini</h2>
+                        
+                        <div class="space-y-6">
+                            <!-- Update 1 -->
+                            <div class="border-l-4 border-primary pl-4 py-2">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="font-bold text-lg">Persiapan Operasi</h3>
+                                    <span class="text-sm text-gray-500">2 hari yang lalu</span>
+                                </div>
+                                <p class="text-gray-600">Terima kasih atas dukungannya. Rina sedang dalam persiapan operasi yang dijadwalkan tanggal 15 Juni. Dokter telah melakukan pemeriksaan pra-operasi dan menyatakan Rina dalam kondisi yang cukup baik untuk menjalani prosedur.</p>
+                                <div class="mt-3 flex space-x-2">
+                                    <img src="http://static.photos/medical/200x200/1" alt="Update 1" class="w-20 h-20 object-cover rounded">
+                                    <img src="http://static.photos/medical/200x200/2" alt="Update 2" class="w-20 h-20 object-cover rounded">
+                                </div>
+                            </div>
+                            
+                            <!-- Update 2 -->
+                            <div class="border-l-4 border-primary pl-4 py-2">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="font-bold text-lg">Donasi Pertama Digunakan</h3>
+                                    <span class="text-sm text-gray-500">1 minggu yang lalu</span>
+                                </div>
+                                <p class="text-gray-600">Dana sebesar Rp 15.000.000 telah digunakan untuk membayar uang muka operasi dan membeli obat-obatan pendukung. Berikut bukti pembayaran dari rumah sakit:</p>
+                                <div class="mt-3">
+                                    <img src="http://static.photos/office/320x240/1" alt="Bukti pembayaran" class="w-full max-w-xs object-cover rounded border">
+                                </div>
+                            </div>
+                            
+                            <!-- Update 3 -->
+                            <div class="border-l-4 border-primary pl-4 py-2">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="font-bold text-lg">Kampanye Dimulai</h3>
+                                    <span class="text-sm text-gray-500">3 minggu yang lalu</span>
+                                </div>
+                                <p class="text-gray-600">Hari ini kami memulai kampanye penggalangan dana untuk pengobatan Rina. Terima kasih banyak atas dukungan dari teman-teman dan orang baik yang telah menyumbang di hari pertama.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comments -->
+                    <div class="bg-white rounded-xl shadow-md p-6">
+                        <h2 class="font-heading text-2xl font-bold mb-6">Dukungan dari Donatur</h2>
+                        
+                        <form class="mb-6">
+                            <textarea class="w-full px-4 py-3 border rounded-lg focus:ring-primary focus:border-primary" rows="3" placeholder="Tuliskan pesan dukungan untuk Rina..."></textarea>
+                            <div class="flex justify-end mt-2">
+                                <button type="submit" class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">Kirim</button>
+                            </div>
+                        </form>
+                        
+                        <div class="space-y-6">
+                            <!-- Comment 1 -->
+                            <div class="flex">
+                                <img src="http://static.photos/people/200x200/11" alt="Donatur" class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div class="flex-1">
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <h4 class="font-bold">Anita Rahayu</h4>
+                                            <span class="text-sm text-gray-500">2 jam yang lalu</span>
+                                        </div>
+                                        <p class="text-gray-600">Semangat terus Rina! Saya juga survivor kanker payudara. Jangan menyerah, pengobatan mungkin berat tapi hasilnya akan sepadan. Saya telah menyumbang semampu saya.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Comment 2 -->
+                            <div class="flex">
+                                <img src="http://static.photos/people/200x200/12" alt="Donatur" class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div class="flex-1">
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <h4 class="font-bold">Budi Setiawan</h4>
+                                            <span class="text-sm text-gray-500">1 hari yang lalu</span>
+                                        </div>
+                                        <p class="text-gray-600">Saya donasi atas nama istri saya yang juga sedang berjuang melawan kanker. Semoga Rina cepat sembuh dan bisa berkumpul lagi dengan keluarga.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Comment 3 -->
+                            <div class="flex">
+                                <img src="http://static.photos/people/200x200/13" alt="Donatur" class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div class="flex-1">
+                                    <div class="bg-gray-50 rounded-lg p-4">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <h4 class="font-bold">Tim PT Sejahtera</h4>
+                                            <span class="text-sm text-gray-500">3 hari yang lalu</span>
+                                        </div>
+                                        <p class="text-gray-600">Atas nama seluruh karyawan PT Sejahtera, kami turut berdonasi untuk pengobatan Ibu Rina. Semoga lekas sembuh dan bisa kembali mengajar anak-anak.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Donation -->
+                <div class="lg:w-1/3">
+                    <div class="sticky top-24 space-y-6">
+                        <!-- Donation Module -->
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <div class="mb-6">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Terkumpul</span>
+                                    <span>Rp 42.750.000 dari Rp 120.000.000</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-primary h-3 rounded-full progress-bar" style="width: 35%"></div>
+                                </div>
+                                <div class="flex justify-between text-sm text-gray-500 mt-2">
+                                    <div class="flex items-center">
+                                        <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                        <span>187 donatur</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                        <span>18 hari lagi</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="font-bold text-xl mb-4">Pilih Nominal Donasi</h3>
+                            <div class="grid grid-cols-3 gap-3 mb-6">
+                                <button class="donation-option border-2 border-primary text-primary py-3 rounded-lg font-medium transition">Rp 50.000</button>
+                                <button class="donation-option border-2 border-primary text-primary py-3 rounded-lg font-medium transition">Rp 100.000</button>
+                                <button class="donation-option border-2 border-primary text-primary py-3 rounded-lg font-medium transition">Rp 200.000</button>
+                                <button class="donation-option border-2 border-primary text-primary py-3 rounded-lg font-medium transition">Rp 500.000</button>
+                                <button class="donation-option border-2 border-primary text-primary py-3 rounded-lg font-medium transition">Rp 1.000.000</button>
+                                <button class="donation-option border-2 border-primary text-primary py-3 rounded-lg font-medium transition">Lainnya</button>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-primary focus:ring-primary">
+                                    <span class="ml-2">Donasi Rutin Bulanan</span>
+                                </label>
+                            </div>
+                            
+                            <button class="w-full bg-primary text-white text-center py-4 rounded-lg font-bold hover:bg-opacity-90 transition mb-4">Donasi Sekarang</button>
+                            
+                            <div class="text-center text-sm text-gray-500">
+                                <p>Donasi bisa melalui:</p>
+                                <div class="flex justify-center space-x-4 mt-2">
+                                    <i data-feather="credit-card" class="w-6 h-6"></i>
+                                    <i data-feather="dollar-sign" class="w-6 h-6"></i>
+                                    <i data-feather="smartphone" class="w-6 h-6"></i>
+                                    <i data-feather="bank" class="w-6 h-6"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Share -->
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h3 class="font-bold text-xl mb-4">Bagikan Kampanye Ini</h3>
+                            <p class="text-gray-600 mb-4">Bantu sebarkan kampanye ini ke lebih banyak orang baik.</p>
+                            <div class="flex space-x-3">
+                                <a href="#" class="flex-1 bg-green-500 text-white py-2 rounded-lg flex items-center justify-center">
+                                    <i data-feather="message-circle" class="w-5 h-5 mr-2"></i>
+                                    WhatsApp
+                                </a>
+                                <a href="#" class="flex-1 bg-blue-500 text-white py-2 rounded-lg flex items-center justify-center">
+                                    <i data-feather="facebook" class="w-5 h-5 mr-2"></i>
+                                    Facebook
+                                </a>
+                                <a href="#" class="flex-1 bg-black text-white py-2 rounded-lg flex items-center justify-center">
+                                    <i data-feather="twitter" class="w-5 h-5 mr-2"></i>
+                                    Twitter
+                                </a>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <input type="text" value="https://cancerriseup.id/campaign/help-rina" class="flex-1 px-3 py-2 border rounded-l-lg text-sm" readonly>
+                                    <button class="bg-primary text-white px-3 py-2 rounded-r-lg text-sm hover:bg-opacity-90">
+                                        <i data-feather="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Donors -->
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h3 class="font-bold text-xl mb-4">Donatur Terkini</h3>
+                            
+                            <div class="space-y-4">
+                                <!-- Donor 1 -->
+                                <div class="flex items-center">
+                                    <img src="http://static.photos/people/200x200/14" alt="Donatur" class="w-10 h-10 rounded-full object-cover mr-3">
+                                    <div class="flex-1">
+                                        <h4 class="font-medium">Rudi Hartono</h4>
+                                        <p class="text-sm text-gray-500">Rp 500.000 • 1 jam yang lalu</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Donor 2 -->
+                                <div class="flex items-center">
+                                    <img src="http://static.photos/people/200x200/15" alt="Donatur" class="w-10 h-10 rounded-full object-cover mr-3">
+                                    <div class="flex-1">
+                                        <h4 class="font-medium">Siti Aminah</h4>
+                                        <p class="text-sm text-gray-500">Rp 200.000 • 3 jam yang lalu</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Donor 3 -->
+                                <div class="flex items-center">
+                                    <img src="http://static.photos/people/200x200/16" alt="Donatur" class="w-10 h-10 rounded-full object-cover mr-3">
+                                    <div class="flex-1">
+                                        <h4 class="font-medium">Anonim</h4>
+                                        <p class="text-sm text-gray-500">Rp 1.000.000 • 5 jam yang lalu</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Donor 4 -->
+                                <div class="flex items-center">
+                                    <img src="http://static.photos/people/200x200/17" alt="Donatur" class="w-10 h-10 rounded-full object-cover mr-3">
+                                    <div class="flex-1">
+                                        <h4 class="font-medium">PT Maju Bersama</h4>
+                                        <p class="text-sm text-gray-500">Rp 5.000.000 • Kemarin</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Donor 5 -->
+                                <div class="flex items-center">
+                                    <img src="http://static.photos/people/200x200/18" alt="Donatur" class="w-10 h-10 rounded-full object-cover mr-3">
+                                    <div class="flex-1">
+                                        <h4 class="font-medium">Dewi Lestari</h4>
+                                        <p class="text-sm text-gray-500">Rp 250.000 • Kemarin</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <a href="#" class="block text-center text-primary font-medium mt-4 hover:underline">Lihat Semua Donatur</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Similar Campaigns -->
+    <section class="py-12 bg-light">
+        <div class="container mx-auto px-4">
+            <h2 class="font-heading text-3xl font-bold text-center mb-12">Kampanye Serupa</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Campaign 1 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/20" alt="Kampanye kanker payudara" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Bantu Ibu Suryani Lawan Kanker Payudara</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Ibu Suryani (48) membutuhkan biaya kemoterapi setelah operasi kanker payudara. Kondisi ekonomi keluarga sangat terbatas...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 12,3 jt dari Rp 40 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 31%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>78 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>15 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 2 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/21" alt="Kampanye kanker darah" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Transplantasi Sumsum untuk Dinda</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Dinda (9 tahun) menderita leukemia akut dan membutuhkan transplantasi sumsum tulang. Ayahnya seorang buruh harian...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 345 jt dari Rp 500 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 69%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>892 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>7 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 3 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/22" alt="Kampanye kanker otak" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Operasi Tumor Otak untuk Bapak Joni</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Bapak Joni (50) membutuhkan operasi tumor otak segera. Dia adalah satu-satunya pencari nafkah untuk keluarga dengan 3 anak...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 38,2 jt dari Rp 70 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 55%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>203 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>20 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="heart" class="text-primary w-8 h-8"></i>
+                        <span class="font-heading text-2xl font-bold">CancerRiseUp</span>
+                    </div>
+                    <p class="mb-4">Platform crowdfunding untuk membantu pasien kanker di Indonesia mendapatkan akses pengobatan yang mereka butuhkan.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-primary transition"><i data-feather="facebook"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="instagram"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="twitter"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Tautan Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="hover:text-primary transition">Tentang Kami</a></li>
+                        <li><a href="campaigns.html" class="hover:text-primary transition">Kampanye</a></li>
+                        <li><a href="start-campaign.html" class="hover:text-primary transition">Mulai Kampanye</a></li>
+                        <li><a href="blog.html" class="hover:text-primary transition">Blog</a></li>
+                        <li><a href="faq.html" class="hover:text-primary transition">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Dukungan</h3>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-primary transition">Hubungi Kami</a></li>
+                        <li><a href="community.html" class="hover:text-primary transition">Komunitas</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-primary transition">Kebijakan Privasi</a></li>
+                        <li><a href="terms.html" class="hover:text-primary transition">Syarat & Ketentuan</a></li>
+                        <li><a href="refund-policy.html" class="hover:text-primary transition">Kebijakan Pengembalian</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Newsletter</h3>
+                    <p class="mb-4">Daftar untuk mendapatkan update kampanye terbaru dan cerita inspiratif.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Alamat Email" class="px-4 py-2 rounded-l-lg w-full text-gray-800">
+                        <button type="submit" class="bg-primary px-4 py-2 rounded-r-lg hover:bg-opacity-90 transition">
+                            <i data-feather="send" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2023 CancerRiseUp. All rights reserved.</p>
+                <p class="mt-2 text-sm">CancerRiseUp mengikuti peraturan OJK/BI mengenai crowdfunding sosial.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Select donation amount
+        const donationOptions = document.querySelectorAll('.donation-option');
+        donationOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                donationOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+
+        // Animate progress bars when in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.progress-bar').forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(document.querySelector('.progress-bar'));
+
+        // Initialize feather icons
+        feather.replace();
+    </script>
+</body>
+</html>
