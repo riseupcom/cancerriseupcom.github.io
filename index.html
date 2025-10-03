@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CancerRiseUp | Bersama Menopang Harapan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4D9E',
+                        accent: '#FFD6E8',
+                        neutral: '#333333',
+                        light: '#F8F8FA'
+                    },
+                    fontFamily: {
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #FF4D9E 0%, #FFD6E8 100%);
+        }
+        .progress-bar {
+            transition: width 1s ease-in-out;
+        }
+        .campaign-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 77, 158, 0.2);
+        }
+    </style>
+</head>
+<body class="font-body text-neutral bg-white">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-feather="heart" class="text-primary w-8 h-8"></i>
+                <span class="font-heading text-2xl font-bold text-primary">CancerRiseUp</span>
+            </div>
+            <div class="hidden lg:flex space-x-8 items-center">
+                <a href="#" class="text-neutral hover:text-primary transition">Beranda</a>
+                <a href="campaigns.html" class="text-neutral hover:text-primary transition">Kampanye</a>
+                <a href="start-campaign.html" class="text-neutral hover:text-primary transition">Mulai Kampanye</a>
+                <a href="about.html" class="text-neutral hover:text-primary transition">Tentang Kami</a>
+                <a href="community.html" class="text-neutral hover:text-primary transition">Komunitas</a>
+                <div class="relative group">
+                    <button class="flex items-center text-neutral hover:text-primary transition">
+                        Lainnya <i data-feather="chevron-down" class="ml-1 w-4 h-4"></i>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-1 hidden group-hover:block">
+                        <a href="blog.html" class="block px-4 py-2 hover:bg-accent">Blog</a>
+                        <a href="faq.html" class="block px-4 py-2 hover:bg-accent">FAQ</a>
+                        <a href="contact.html" class="block px-4 py-2 hover:bg-accent">Kontak</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="login.html" class="hidden md:block text-primary hover:text-primary-dark transition">Masuk</a>
+                <a href="register.html" class="hidden md:block bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition">Daftar</a>
+                <button class="bg-primary text-white p-2 rounded-full lg:hidden" id="mobile-menu-button">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobile-menu">
+        <div class="bg-white h-full w-4/5 max-w-sm ml-auto p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-2">
+                    <i data-feather="heart" class="text-primary w-6 h-6"></i>
+                    <span class="font-heading text-xl font-bold text-primary">CancerRiseUp</span>
+                </div>
+                <button id="close-mobile-menu">
+                    <i data-feather="x" class="text-neutral"></i>
+                </button>
+            </div>
+            <div class="space-y-6">
+                <a href="#" class="block py-2 text-neutral hover:text-primary">Beranda</a>
+                <a href="campaigns.html" class="block py-2 text-neutral hover:text-primary">Kampanye</a>
+                <a href="start-campaign.html" class="block py-2 text-neutral hover:text-primary">Mulai Kampanye</a>
+                <a href="about.html" class="block py-2 text-neutral hover:text-primary">Tentang Kami</a>
+                <a href="community.html" class="block py-2 text-neutral hover:text-primary">Komunitas</a>
+                <a href="blog.html" class="block py-2 text-neutral hover:text-primary">Blog</a>
+                <a href="faq.html" class="block py-2 text-neutral hover:text-primary">FAQ</a>
+                <a href="contact.html" class="block py-2 text-neutral hover:text-primary">Kontak</a>
+                <div class="pt-4 border-t border-gray-200">
+                    <a href="login.html" class="block py-2 text-primary">Masuk</a>
+                    <a href="register.html" class="block mt-4 bg-primary text-white px-4 py-2 rounded-full text-center font-medium">Daftar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white">
+        <div class="container mx-auto px-4 py-20 md:py-28">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Bersama Menopang Harapan</h1>
+                <p class="text-xl md:text-2xl mb-10 opacity-90">Donasi untuk perjalanan penyembuhan kanker di Indonesia</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="campaigns.html" class="bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    <a href="start-campaign.html" class="bg-transparent border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-primary transition">Mulai Kampanye</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-primary mb-2" id="total-raised">Rp 12,8M</div>
+                    <div class="text-neutral">Total Dana Terkumpul</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-primary mb-2" id="campaigns">387</div>
+                    <div class="text-neutral">Kampanye Aktif</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-primary mb-2" id="donors">5.241</div>
+                    <div class="text-neutral">Donatur Peduli</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-primary mb-2" id="lives">1.158</div>
+                    <div class="text-neutral">Jiwa Terbantu</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Campaigns -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="font-heading text-3xl font-bold text-center mb-12">Kampanye yang Membutuhkan Bantuanmu</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Campaign 1 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/1" alt="Kampanye kanker payudara" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Bantu Rina Lawan Kanker Payudara Stadium 3</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Rina, seorang ibu muda berusia 32 tahun, membutuhkan biaya kemoterapi dan operasi untuk melawan kanker payudara yang dideritanya...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 18,7 jt dari Rp 50 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 37%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>128 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>12 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 2 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/2" alt="Kampanye kanker darah" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Bantu Bayi Alya Transplantasi Sumsum Tulang</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Alya, bayi 2 tahun dengan leukemia akut, membutuhkan transplantasi sumsum tulang di Singapura. Ayahnya seorang buruh harian...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 342 jt dari Rp 500 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 68%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>784 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>5 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Campaign 3 -->
+                <div class="campaign-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="http://static.photos/medical/640x360/3" alt="Kampanye kanker otak" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">Terverifikasi</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Operasi Tumor Otak untuk Bapak Sugiono</h3>
+                        <p class="text-gray-600 mb-4 line-clamp-2">Bapak Sugiono, guru honorer yang telah mengabdi 15 tahun, membutuhkan operasi tumor otak segera sebelum semakin membesar...</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Terkumpul</span>
+                                <span>Rp 42 jt dari Rp 75 jt</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full progress-bar" style="width: 56%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm text-gray-500 mb-4">
+                            <div class="flex items-center">
+                                <i data-feather="users" class="w-4 h-4 mr-1"></i>
+                                <span>213 donatur</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                                <span>18 hari lagi</span>
+                            </div>
+                        </div>
+                        
+                        <a href="campaign-detail.html" class="block w-full bg-primary text-white text-center py-3 rounded-lg font-medium hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="campaigns.html" class="inline-flex items-center px-6 py-3 border-2 border-primary text-primary rounded-full font-bold hover:bg-primary hover:text-white transition">
+                    Lihat Semua Kampanye
+                    <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <h2 class="font-heading text-3xl font-bold text-center mb-12">Bagaimana CancerRiseUp Bekerja?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center p-6">
+                    <div class="flex justify-center mb-4">
+                        <div class="bg-accent rounded-full p-4">
+                            <i data-feather="search" class="text-primary w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">1. Temukan Kampanye</h3>
+                    <p class="text-gray-600">Cari pasien kanker yang membutuhkan bantuan berdasarkan lokasi, jenis kanker, atau tingkat urgensi.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="flex justify-center mb-4">
+                        <div class="bg-accent rounded-full p-4">
+                            <i data-feather="shield" class="text-primary w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">2. Verifikasi Ketat</h3>
+                    <p class="text-gray-600">Setiap kampanye melalui proses verifikasi dokumen medis dan identitas untuk memastikan keaslian.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="flex justify-center mb-4">
+                        <div class="bg-accent rounded-full p-4">
+                            <i data-feather="credit-card" class="text-primary w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">3. Donasi dengan Mudah</h3>
+                    <p class="text-gray-600">Berikan donasi melalui berbagai metode pembayaran yang aman dan terpercaya.</p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="flex justify-center mb-4">
+                        <div class="bg-accent rounded-full p-4">
+                            <i data-feather="heart" class="text-primary w-8 h-8"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">4. Pantau Perkembangan</h3>
+                    <p class="text-gray-600">Dapatkan update langsung tentang kondisi pasien dan penggunaan dana secara transparan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12">
+                    <h2 class="font-heading text-3xl font-bold mb-6">Mengapa Memilih CancerRiseUp?</h2>
+                    <p class="text-gray-600 mb-8">Kami berkomitmen untuk menjadi jembatan antara mereka yang ingin membantu dengan pasien kanker yang membutuhkan dukungan finansial untuk pengobatan.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="mr-4">
+                                <div class="bg-accent rounded-full p-3">
+                                    <i data-feather="check-circle" class="text-primary w-6 h-6"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-2">Verifikasi Ketat</h3>
+                                <p class="text-gray-600">Setiap kampanye diverifikasi oleh tim kami dengan dokumen medis resmi dari rumah sakit.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="mr-4">
+                                <div class="bg-accent rounded-full p-3">
+                                    <i data-feather="dollar-sign" class="text-primary w-6 h-6"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-2">Transparansi Dana</h3>
+                                <p class="text-gray-600">Laporan penggunaan dana dapat diakses oleh donatur untuk memastikan tepat sasaran.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="mr-4">
+                                <div class="bg-accent rounded-full p-3">
+                                    <i data-feather="lock" class="text-primary w-6 h-6"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-2">Keamanan Pembayaran</h3>
+                                <p class="text-gray-600">Sistem pembayaran yang aman dengan enkripsi tingkat tinggi untuk melindungi data Anda.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <img src="http://static.photos/people/640x360/1" alt="Tim CancerRiseUp" class="rounded-xl shadow-lg w-full">
+                </div>
+            </div>
+            
+            <!-- Partner Logos -->
+            <div class="mt-16">
+                <h3 class="text-center text-gray-500 mb-8">Bekerja sama dengan:</h3>
+                <div class="flex flex-wrap justify-center items-center gap-8">
+                    <img src="http://static.photos/medical/320x240/1" alt="Rumah Sakit Mitra" class="h-12 object-contain opacity-70 hover:opacity-100 transition">
+                    <img src="http://static.photos/medical/320x240/2" alt="Yayasan Kanker" class="h-12 object-contain opacity-70 hover:opacity-100 transition">
+                    <img src="http://static.photos/finance/320x240/1" alt="Bank Mitra" class="h-12 object-contain opacity-70 hover:opacity-100 transition">
+                    <img src="http://static.photos/medical/320x240/3" alt="Asosiasi Medis" class="h-12 object-contain opacity-70 hover:opacity-100 transition">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="font-heading text-3xl font-bold text-center mb-12">Kata Mereka Tentang CancerRiseUp</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <div class="testimonial-slider overflow-hidden">
+                        <div class="flex transition-transform duration-300 ease-in-out">
+                            <!-- Testimonial 1 -->
+                            <div class="w-full flex-shrink-0 px-4">
+                                <div class="bg-white bg-opacity-10 p-8 rounded-xl backdrop-blur-sm">
+                                    <div class="flex items-center mb-6">
+                                        <img src="http://static.photos/people/200x200/1" alt="Donatur" class="w-16 h-16 rounded-full object-cover mr-4">
+                                        <div>
+                                            <h4 class="font-bold text-lg">Rina Anggraini</h4>
+                                            <p class="text-accent">Donatur</p>
+                                        </div>
+                                    </div>
+                                    <p class="italic mb-6">"Melalui CancerRiseUp, saya bisa membantu pasien kanker dengan transparan. Saya bisa melihat langsung perkembangan pasien yang saya bantu, membuat donasi menjadi lebih bermakna."</p>
+                                    <div class="flex">
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 2 -->
+                            <div class="w-full flex-shrink-0 px-4">
+                                <div class="bg-white bg-opacity-10 p-8 rounded-xl backdrop-blur-sm">
+                                    <div class="flex items-center mb-6">
+                                        <img src="http://static.photos/people/200x200/2" alt="Pasien" class="w-16 h-16 rounded-full object-cover mr-4">
+                                        <div>
+                                            <h4 class="font-bold text-lg">Budi Santoso</h4>
+                                            <p class="text-accent">Pasien Kanker</p>
+                                        </div>
+                                    </div>
+                                    <p class="italic mb-6">"CancerRiseUp membantu saya mendapatkan dukungan finansial untuk pengobatan kanker saya. Tanpa bantuan dari donatur, saya tidak mungkin bisa menjalani kemoterapi."</p>
+                                    <div class="flex">
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 3 -->
+                            <div class="w-full flex-shrink-0 px-4">
+                                <div class="bg-white bg-opacity-10 p-8 rounded-xl backdrop-blur-sm">
+                                    <div class="flex items-center mb-6">
+                                        <img src="http://static.photos/people/200x200/3" alt="Keluarga Pasien" class="w-16 h-16 rounded-full object-cover mr-4">
+                                        <div>
+                                            <h4 class="font-bold text-lg">Dewi Kartika</h4>
+                                            <p class="text-accent">Keluarga Pasien</p>
+                                        </div>
+                                    </div>
+                                    <p class="italic mb-6">"Sangat terbantu dengan adanya CancerRiseUp. Proses verifikasi yang jelas membuat donatur percaya, dan kami bisa fokus pada pengobatan anak kami tanpa khawatir biaya."</p>
+                                    <div class="flex">
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                        <i data-feather="star" class="w-5 h-5 text-yellow-300 fill-yellow-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="absolute left-0 top-1/2 transform -translate-y-1/2 -ml-4 bg-white bg-opacity-20 p-2 rounded-full hover:bg-opacity-30 transition" id="prev-testimonial">
+                        <i data-feather="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <button class="absolute right-0 top-1/2 transform -translate-y-1/2 -mr-4 bg-white bg-opacity-20 p-2 rounded-full hover:bg-opacity-30 transition" id="next-testimonial">
+                        <i data-feather="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <div class="flex justify-center mt-6 space-x-2" id="testimonial-dots">
+                    <button class="w-3 h-3 rounded-full bg-white bg-opacity-30 hover:bg-opacity-100 transition dot active"></button>
+                    <button class="w-3 h-3 rounded-full bg-white bg-opacity-30 hover:bg-opacity-100 transition dot"></button>
+                    <button class="w-3 h-3 rounded-full bg-white bg-opacity-30 hover:bg-opacity-100 transition dot"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-accent">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="font-heading text-3xl font-bold mb-6">Siap Membantu Sesama?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Setiap donasi, sekecil apapun, bisa memberikan harapan baru bagi pasien kanker di Indonesia.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="campaigns.html" class="bg-primary text-white px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition">Donasi Sekarang</a>
+                <a href="start-campaign.html" class="bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition">Mulai Kampanye</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="heart" class="text-primary w-8 h-8"></i>
+                        <span class="font-heading text-2xl font-bold">CancerRiseUp</span>
+                    </div>
+                    <p class="mb-4">Platform crowdfunding untuk membantu pasien kanker di Indonesia mendapatkan akses pengobatan yang mereka butuhkan.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-primary transition"><i data-feather="facebook"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="instagram"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="twitter"></i></a>
+                        <a href="#" class="hover:text-primary transition"><i data-feather="youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Tautan Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="hover:text-primary transition">Tentang Kami</a></li>
+                        <li><a href="campaigns.html" class="hover:text-primary transition">Kampanye</a></li>
+                        <li><a href="start-campaign.html" class="hover:text-primary transition">Mulai Kampanye</a></li>
+                        <li><a href="blog.html" class="hover:text-primary transition">Blog</a></li>
+                        <li><a href="faq.html" class="hover:text-primary transition">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Dukungan</h3>
+                    <ul class="space-y-2">
+                        <li><a href="contact.html" class="hover:text-primary transition">Hubungi Kami</a></li>
+                        <li><a href="community.html" class="hover:text-primary transition">Komunitas</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-primary transition">Kebijakan Privasi</a></li>
+                        <li><a href="terms.html" class="hover:text-primary transition">Syarat & Ketentuan</a></li>
+                        <li><a href="refund-policy.html" class="hover:text-primary transition">Kebijakan Pengembalian</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Newsletter</h3>
+                    <p class="mb-4">Daftar untuk mendapatkan update kampanye terbaru dan cerita inspiratif.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Alamat Email" class="px-4 py-2 rounded-l-lg w-full text-gray-800">
+                        <button type="submit" class="bg-primary px-4 py-2 rounded-r-lg hover:bg-opacity-90 transition">
+                            <i data-feather="send" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2023 CancerRiseUp. All rights reserved.</p>
+                <p class="mt-2 text-sm">CancerRiseUp mengikuti peraturan OJK/BI mengenai crowdfunding sosial.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Testimonial slider
+        const testimonialSlider = document.querySelector('.testimonial-slider');
+        const testimonialSlides = document.querySelectorAll('.testimonial-slider > div > div');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            const slideWidth = 100; // percentage
+            testimonialSlider.querySelector('div').style.transform = `translateX(-${index * slideWidth}%)`;
+            
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            currentSlide = index;
+        }
+        
+        document.getElementById('next-testimonial').addEventListener('click', () => {
+            let nextSlide = (currentSlide + 1) % testimonialSlides.length;
+            showSlide(nextSlide);
+        });
+        
+        document.getElementById('prev-testimonial').addEventListener('click', () => {
+            let prevSlide = (currentSlide - 1 + testimonialSlides.length) % testimonialSlides.length;
+            showSlide(prevSlide);
+        });
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Animate impact numbers
+        function animateValue(id, start, end, duration) {
+            let startTimestamp = null;
+            const element = document.getElementById(id);
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                if (id === 'total-raised') {
+                    element.innerHTML = `Rp ${(value / 1000).toFixed(1)}M`;
+                } else {
+                    element.innerHTML = value.toLocaleString();
+                }
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Initialize animations when elements are in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateValue('total-raised', 0, 12800, 2000);
+                    animateValue('campaigns', 0, 387, 2000);
+                    animateValue('donors', 0, 5241, 2000);
+                    animateValue('lives', 0, 1158, 2000);
+                    
+                    // Animate progress bars
+                    document.querySelectorAll('.progress-bar').forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.querySelector('#total-raised').parentElement.parentElement);
+
+        // Initialize feather icons
+        feather.replace();
+    </script>
+</body>
+</html>
